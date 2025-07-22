@@ -1,5 +1,5 @@
 import * as THREE from "three";
-import { MeshLine, MeshLineMaterial, MeshLineRaycast } from './node_modules/three.meshline/src/THREE.MeshLine.js';
+import { MeshLine, MeshLineMaterial, MeshLineRaycast } from '../node_modules/three.meshline/src/THREE.MeshLine.js';
 
 
 function deg_to_rad(angle_in_degrees){
