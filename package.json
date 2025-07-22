@@ -1,0 +1,11 @@
+{
+  "name": "emptycup_assignment",
+  "main": "main.js",
+
+  "files": [
+    "PlanetHelpers.js",
+    "PlanetCluster.js",
+    "main.js"
+  ]
+
+}
