@@ -1,6 +1,6 @@
 import * as THREE from "three";
 import {OrbitControls} from 'jsm/controls/OrbitControls.js';
-import {CreateSun, CreateEarthandMoon} from './PlanetCluster.js'
+import {CreateSun, CreateEarthandMoon, CreateMercury} from './PlanetCluster.js'
 import {RenderPass} from 'jsm/postprocessing/RenderPass.js';
 import {EffectComposer} from 'jsm/postprocessing/EffectComposer.js';
 import {UnrealBloomPass} from 'jsm/postprocessing/UnrealBloomPass.js';
@@ -45,6 +45,9 @@ scene.add(SunMesh);
 const Earth_Moon_Orbit=CreateEarthandMoon(15, 2)
 const moon_orbit=Earth_Moon_Orbit.getObjectByName("MoonOrbit")
 scene.add(Earth_Moon_Orbit)
+
+const Mercury_Orbit=CreateMercury(10)
+scene.add(Mercury_Orbit)
 //=========================Planets===================================
 
 // const light=new THREE.AmbientLight(0xffffff, 0.1);
@@ -59,6 +62,7 @@ function animate(){
     SunMesh.rotateY(-0.01);
     Earth_Moon_Orbit.rotateY(-0.01)
     moon_orbit.rotateY(0.04)
+    Mercury_Orbit.rotateY(-0.02)
 
 
 

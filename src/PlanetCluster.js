@@ -12,6 +12,7 @@ function CreateSun(size){
     return {mesh}
 }
 
+
 function CreateEarthandMoon(EarthOrbitRadius, MoonRadius){
     const EarthOrbit=new THREE.Group();
     EarthOrbit.name="EarthOrbit"
@@ -35,6 +36,20 @@ function CreateEarthandMoon(EarthOrbitRadius, MoonRadius){
 }
 
 
+function CreateMercury(MercuryOrbitRadius){
+    const MercuryOrbit=new THREE.Group();
+    MercuryOrbit.name="MercuryOrbit"
+
+    //const earthtexture=new THREE.TextureLoader().load('./Textures/earthmap1k.jpg')
+    const MercuryMesh=CreatePlanetOrb(0.5, 4, 0xd42e22, "Mercury");
+    MercuryMesh.position.set(MercuryOrbitRadius,0.0,0.0)
+    MercuryOrbit.add(MercuryMesh);
+    MercuryOrbit.add(DrawOrbitLines(MercuryOrbitRadius, 30))
+    
+    return MercuryOrbit
+}
 
 
-export { CreateSun, CreateEarthandMoon }
+
+
+export { CreateSun, CreateEarthandMoon, CreateMercury }
