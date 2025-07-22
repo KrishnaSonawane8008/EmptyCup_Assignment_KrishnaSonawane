@@ -18,8 +18,8 @@ function CreateEarthandMoon(EarthOrbitRadius, MoonRadius){
     const MoonOrbit=new THREE.Group();
     MoonOrbit.name="MoonOrbit"
 
-    const earthtexture=new THREE.TextureLoader().load('./Textures/earthmap1k.jpg')
-    const EarthMesh=CreatePlanetOrb(1, 4, 0x1498e4, "Earth", earthtexture);
+    //const earthtexture=new THREE.TextureLoader().load('./Textures/earthmap1k.jpg')
+    const EarthMesh=CreatePlanetOrb(1, 4, 0x1498e4, "Earth");
     EarthMesh.position.set(EarthOrbitRadius,0.0,0.0)
     EarthOrbit.add(EarthMesh);
     EarthOrbit.add(DrawOrbitLines(EarthOrbitRadius, 30))
