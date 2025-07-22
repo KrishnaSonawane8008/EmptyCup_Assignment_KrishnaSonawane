@@ -1,13 +1,15 @@
 import * as THREE from "three";
 import {OrbitControls} from 'jsm/controls/OrbitControls.js';
-import {CreateSun} from './PlanetCluster.js'
+import {CreateSun, CreateEarthandMoon} from './PlanetCluster.js'
 import {RenderPass} from 'jsm/postprocessing/RenderPass.js';
 import {EffectComposer} from 'jsm/postprocessing/EffectComposer.js';
 import {UnrealBloomPass} from 'jsm/postprocessing/UnrealBloomPass.js';
+// import {GUI} from ''
 
 const w=window.innerWidth;
 const h=window.innerHeight;
 const renderer=new THREE.WebGLRenderer({antialias: true});
+renderer.shadowMap.enabled=true;
 renderer.setSize(w,h);
 document.body.appendChild(renderer.domElement);
 
@@ -17,8 +19,9 @@ const aspect=w/h;
 const near=0.1;
 const far=100;
 const camera=new THREE.PerspectiveCamera(fov, aspect, near, far);
-camera.position.z=2;
-new OrbitControls(camera, renderer.domElement);
+camera.position.z=1;
+camera.position.y=25;
+const controls=new OrbitControls(camera, renderer.domElement);
 const scene=new THREE.Scene();
 
 const renderScene= new RenderPass(scene, camera);
@@ -34,29 +37,28 @@ composer.addPass(bloomPass)
 
 renderer.toneMapping=THREE.LinearToneMapping;
 renderer.toneMappingExposure=3;
-// const geo=new THREE.IcosahedronGeometry(1.0, 2);
-// const mat=new THREE.MeshStandardMaterial({
-//     color:0xffffff,
-//     flatShading: true
-// })
-const mesh=CreateSun().mesh;
-scene.add(mesh);
 
-const newsun=CreateSun()
-newsun.mesh.position.set(1.0,1.0,1.0);
-scene.add(newsun.mesh)
+//=========================Planets===================================
+const SunMesh=CreateSun(4).mesh;
+scene.add(SunMesh);
 
-const light=new THREE.AmbientLight(0xffffff, 2.0);
-scene.add(light);
+const Earth_Moon_Orbit=CreateEarthandMoon(15, 2)
+const moon_orbit=Earth_Moon_Orbit.getObjectByName("MoonOrbit")
+scene.add(Earth_Moon_Orbit)
+//=========================Planets===================================
 
-const dirlight=new THREE.DirectionalLight(0xffffff, 1.0);
-scene.add(dirlight)
+// const light=new THREE.AmbientLight(0xffffff, 0.1);
+// scene.add(light);
+
+
+const pointlight=new THREE.PointLight(0xffffff, 100.0);
+scene.add(pointlight)
 
 function animate(){
 //==================================================================================
-    mesh.rotateY(0.01);
-
-
+    SunMesh.rotateY(-0.01);
+    Earth_Moon_Orbit.rotateY(-0.01)
+    moon_orbit.rotateY(0.04)
 
 
 
