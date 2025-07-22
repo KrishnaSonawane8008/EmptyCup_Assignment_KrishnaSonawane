@@ -1,6 +1,6 @@
 import * as THREE from "three";
 import {OrbitControls} from 'jsm/controls/OrbitControls.js';
-import {CreateSun, CreateEarthandMoon, CreateMercury} from './PlanetCluster.js'
+import {CreateSun, CreateEarthandMoon, CreateMercury, CreateVenus, CreateMars, CreateJupiter} from './PlanetCluster.js'
 import {RenderPass} from 'jsm/postprocessing/RenderPass.js';
 import {EffectComposer} from 'jsm/postprocessing/EffectComposer.js';
 import {UnrealBloomPass} from 'jsm/postprocessing/UnrealBloomPass.js';
@@ -20,7 +20,7 @@ const near=0.1;
 const far=100;
 const camera=new THREE.PerspectiveCamera(fov, aspect, near, far);
 camera.position.z=1;
-camera.position.y=25;
+camera.position.y=50;
 const controls=new OrbitControls(camera, renderer.domElement);
 const scene=new THREE.Scene();
 
@@ -42,12 +42,22 @@ renderer.toneMappingExposure=3;
 const SunMesh=CreateSun(4).mesh;
 scene.add(SunMesh);
 
-const Earth_Moon_Orbit=CreateEarthandMoon(15, 2)
-const moon_orbit=Earth_Moon_Orbit.getObjectByName("MoonOrbit")
-scene.add(Earth_Moon_Orbit)
 
 const Mercury_Orbit=CreateMercury(10)
 scene.add(Mercury_Orbit)
+
+const Venus_Orbit=CreateVenus(15)
+scene.add(Venus_Orbit)
+
+const Earth_Moon_Orbit=CreateEarthandMoon(20, 2)
+const moon_orbit=Earth_Moon_Orbit.getObjectByName("MoonOrbit")
+scene.add(Earth_Moon_Orbit)
+
+const Mars_Orbit=CreateMars(25)
+scene.add(Mars_Orbit)
+
+const Jupiter_Orbit=CreateJupiter(30)
+scene.add(Jupiter_Orbit)
 //=========================Planets===================================
 
 // const light=new THREE.AmbientLight(0xffffff, 0.1);
@@ -62,7 +72,11 @@ function animate(){
     SunMesh.rotateY(-0.01);
     Earth_Moon_Orbit.rotateY(-0.01)
     moon_orbit.rotateY(0.04)
-    Mercury_Orbit.rotateY(-0.02)
+    Mercury_Orbit.rotateY(-0.025)
+    Venus_Orbit.rotateY(-0.02)
+    Mars_Orbit.rotateY(-0.005)
+    Jupiter_Orbit.rotateY(-0.01)
+
 
 
 

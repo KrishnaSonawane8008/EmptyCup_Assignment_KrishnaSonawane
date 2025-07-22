@@ -1,6 +1,8 @@
 import * as THREE from "three";
 import {DrawOrbitLines, CreatePlanetOrb} from './PlanetHelpers.js'
 
+
+
 function CreateSun(size){
     const mesh=new THREE.Mesh(
         new THREE.IcosahedronGeometry(1.0, 4), 
@@ -41,7 +43,7 @@ function CreateMercury(MercuryOrbitRadius){
     MercuryOrbit.name="MercuryOrbit"
 
     //const earthtexture=new THREE.TextureLoader().load('./Textures/earthmap1k.jpg')
-    const MercuryMesh=CreatePlanetOrb(0.5, 4, 0xd42e22, "Mercury");
+    const MercuryMesh=CreatePlanetOrb(0.5, 4, 0x918b8a, "Mercury");
     MercuryMesh.position.set(MercuryOrbitRadius,0.0,0.0)
     MercuryOrbit.add(MercuryMesh);
     MercuryOrbit.add(DrawOrbitLines(MercuryOrbitRadius, 30))
@@ -49,7 +51,53 @@ function CreateMercury(MercuryOrbitRadius){
     return MercuryOrbit
 }
 
+function CreateVenus(VenusOrbitRadius){
+    const VenusOrbit=new THREE.Group();
+    VenusOrbit.name="VenusOrbit"
+
+    //const earthtexture=new THREE.TextureLoader().load('./Textures/earthmap1k.jpg')
+    const VenusMesh=CreatePlanetOrb(1, 4, 0xf24f0a, "Venus");
+    VenusMesh.position.set(VenusOrbitRadius,0.0,0.0)
+    VenusOrbit.add(VenusMesh);
+    VenusOrbit.add(DrawOrbitLines(VenusOrbitRadius, 30))
+    
+    return VenusOrbit
+}
+
+function CreateMars(MarsOrbitRadius){
+    const MarsOrbit=new THREE.Group();
+    MarsOrbit.name="MarsOrbit"
+
+    //const earthtexture=new THREE.TextureLoader().load('./Textures/earthmap1k.jpg')
+    const MarsMesh=CreatePlanetOrb(0.75, 4, 0xe32809, "Mars");
+    MarsMesh.position.set(MarsOrbitRadius,0.0,0.0)
+    MarsOrbit.add(MarsMesh);
+    MarsOrbit.add(DrawOrbitLines(MarsOrbitRadius, 30))
+    
+    return MarsOrbit
+}
+
+function CreateJupiter(JupiterOrbitRadius){
+    const JupiterOrbit=new THREE.Group();
+    JupiterOrbit.name="JupiterOrbit"
+
+    //const earthtexture=new THREE.TextureLoader().load('./Textures/earthmap1k.jpg')
+    const JupiterMesh=CreatePlanetOrb(2, 4, 0xe32809, "Jupiter");
+    JupiterMesh.position.set(JupiterOrbitRadius,0.0,0.0)
+    JupiterOrbit.add(JupiterMesh);
+    JupiterOrbit.add(DrawOrbitLines(JupiterOrbitRadius, 30))
+    
+    return JupiterOrbit
+}
 
 
 
-export { CreateSun, CreateEarthandMoon, CreateMercury }
+
+
+
+export { CreateSun, 
+        CreateEarthandMoon, 
+        CreateMercury, 
+        CreateVenus, 
+        CreateMars,
+        CreateJupiter }
