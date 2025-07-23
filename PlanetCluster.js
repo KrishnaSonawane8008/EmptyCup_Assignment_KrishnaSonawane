@@ -34,15 +34,28 @@ function CreateEarthandMoon(EarthOrbitRadius, MoonRadius){
     MoonOrbit.name="MoonOrbit"
 
     //const earthtexture=new THREE.TextureLoader().load('./Textures/earthmap1k.jpg')
-    const EarthMesh=CreatePlanetOrb(1, 4, 0x1498e4, "Earth");
-    EarthMesh.position.set(EarthOrbitRadius,0.0,0.0)
-    EarthOrbit.add(EarthMesh);
+    // const EarthMesh=CreatePlanetOrb(1, 4, 0x1498e4, "Earth");
+    // EarthMesh.position.set(EarthOrbitRadius,0.0,0.0)
+    // EarthOrbit.add(EarthMesh);
+
+    gltfLoader.load('./EarthAssets/Earth.gltf', (gltfScene)=>{
+        gltfScene.scene.scale.set(1,1,1)
+        gltfScene.scene.position.set(EarthOrbitRadius,0.0,0.0)
+        EarthOrbit.add(gltfScene.scene)
+    })
     EarthOrbit.add(DrawOrbitLines(EarthOrbitRadius, 30, 1, 50))
 
     EarthOrbit.add(MoonOrbit)
-    const MoonMesh=CreatePlanetOrb(0.5, 4, 0x9c9898, "Moon");
-    MoonMesh.position.set(MoonRadius,0.0,0.0)
-    MoonOrbit.add(MoonMesh)
+
+    gltfLoader.load('./MoonAssets/Moon.gltf', (gltfScene)=>{
+        gltfScene.scene.scale.set(0.5,0.5,0.5)
+        gltfScene.scene.position.set(MoonRadius,0.0,0.0)
+        MoonOrbit.add(gltfScene.scene)
+    })
+    // const MoonMesh=CreatePlanetOrb(0.5, 4, 0x9c9898, "Moon");
+    // MoonMesh.position.set(MoonRadius,0.0,0.0)
+    // MoonOrbit.add(MoonMesh)
+
     MoonOrbit.position.set(EarthOrbitRadius,0.0,0.0)
     MoonOrbit.add(DrawOrbitLines(MoonRadius, 20, -1, 50))
     
@@ -123,7 +136,6 @@ function CreateNeptune(NeptuneOrbitRadius){
     
     return NeptuneOrbit
 }
-
 
 
 export { CreateSun, 
