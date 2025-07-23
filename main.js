@@ -5,7 +5,8 @@ import {RenderPass} from 'jsm/postprocessing/RenderPass.js';
 import {EffectComposer} from 'jsm/postprocessing/EffectComposer.js';
 import {UnrealBloomPass} from 'jsm/postprocessing/UnrealBloomPass.js';
 import {OutputPass} from 'jsm/postprocessing/OutputPass.js';
-// import {GUI} from ''
+import {ShaderPass} from 'jsm/postprocessing/ShaderPass.js';
+import datGui from 'https://cdn.jsdelivr.net/npm/dat.gui@0.7.9/+esm'
 
 const w=window.innerWidth;
 const h=window.innerHeight;
@@ -25,11 +26,8 @@ camera.position.y=50;
 const controls=new OrbitControls(camera, renderer.domElement);
 const scene=new THREE.Scene();
 
-const ambientlight=new THREE.AmbientLight(0xffffff, 1)
-scene.add(ambientlight)
-
 const renderScene= new RenderPass(scene, camera);
-const composer=new EffectComposer(renderer);
+const BloomComposer=new EffectComposer(renderer);
 
 const bloomPass=new UnrealBloomPass(
     new THREE.Vector2(window.innerWidth,window.innerHeight),
@@ -42,19 +40,65 @@ renderer.toneMapping=THREE.LinearToneMapping;
 renderer.toneMappingExposure=3;
 renderer.outputColorSpace = THREE.SRGBColorSpace;
 
-const outputpass=new OutputPass();
 
-composer.addPass(renderScene);
-composer.addPass(bloomPass)
+BloomComposer.addPass(renderScene);
+BloomComposer.addPass(bloomPass)
 bloomPass.strength = 1.5;
 bloomPass.radius = 0.7;
-bloomPass.threshold = 0.1;
+bloomPass.threshold = 0.003;
 
-composer.addPass(outputpass)
+BloomComposer.renderToScreen=false;
+
+const mixPass=new ShaderPass(
+    new THREE.ShaderMaterial({
+        uniforms: {
+            baseTexture: {value: null},
+            bloomTexture: {value: BloomComposer.renderTarget2.texture}
+        },
+        vertexShader: document.getElementById('VertexShader').textContent,
+        fragmentShader: document.getElementById('FragmentShader').textContent
+    }), 'baseTexture'
+
+);
+
+const gui= new datGui.GUI();
+
+const finalComposer = new EffectComposer(renderer);
+finalComposer.addPass(renderScene);
+finalComposer.addPass(mixPass);
+
+const outputpass=new OutputPass();
+finalComposer.addPass(outputpass)
+
+const BLOOM_SCENE=1;
+const bloomLayer=new THREE.Layers();
+bloomLayer.set(BLOOM_SCENE);
+const darkMaterial= new THREE.MeshBasicMaterial({color:0x000000});
+const materials={};
+
+function nonBloomed(obj){
+    if(obj.isMesh && bloomLayer.test(obj.layers)==false){
+        materials[obj.uuid]=obj.material;
+        obj.material=darkMaterial;
+    }
+}
+
+function restoreMaterial(obj){
+    if(materials[obj.uuid]){
+        obj.material=materials[obj.uuid];
+        delete materials[obj.uuid];
+    }
+}
+
+
+const ambientlight=new THREE.AmbientLight(0xffffff, 0.5)
+scene.add(ambientlight)
+const pointlight=new THREE.PointLight(0xffffff, 100);
+scene.add(pointlight)
+
 //=========================Planets===================================
 const SunMesh=CreateSun(4);
 scene.add(SunMesh);
-
 
 const Mercury_Orbit=CreateMercury(10)
 scene.add(Mercury_Orbit)
@@ -87,7 +131,8 @@ scene.add(Neptune_Orbit)
 // const pointlight2=new THREE.PointLight(0xffffff, 1.0);
 // pointlight2.position.set(0,10,0)
 // scene.add(pointlight2)
-
+let runonce=true
+camera.layers.enableAll()
 function animate(){
     
 //==================================================================================
@@ -103,18 +148,32 @@ function animate(){
 
 
 //==================================================================================
+    scene.traverse(nonBloomed);
+
     //renderer.render(scene, camera);
-    composer.render();
-    requestAnimationFrame(animate);
+    BloomComposer.render();
+
+    scene.traverse(restoreMaterial);
+
+    SunMesh.traverse((obj)=>{
+            obj.layers.set(BLOOM_SCENE)
+    })
+    
+    finalComposer.render();
     
 
+    requestAnimationFrame(animate);
+    
 }
 
 animate();
+
 
 window.addEventListener("resize", function(){
     camera.aspect=window.innerWidth/window.innerHeight;
     camera.updateProjectionMatrix();
     renderer.setSize(window.innerWidth, window.innerHeight);
-    composer.setSize(window.innerWidth, window.innerHeight);
+    BloomComposer.setSize(window.innerWidth, window.innerHeight);
+    finalComposer.setSize(window.innerWidth, window.innerHeight);
+
 });
