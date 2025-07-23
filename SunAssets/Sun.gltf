@@ -8,67 +8,20 @@
 		{
 			"name":"Scene",
 			"nodes":[
-				5
+				0
 			]
 		}
 	],
 	"nodes":[
 		{
 			"mesh":0,
-			"name":"UnstableStarCore_1_0"
-		},
-		{
-			"children":[
-				0
-			],
-			"name":"UnstableStarCore",
-			"rotation":[
-				-0.7071013450622559,
-				0.0027767939027398825,
-				0.0027767939027398825,
-				0.7071013450622559
-			]
-		},
-		{
-			"children":[
-				1
-			],
-			"name":"RootNode"
-		},
-		{
-			"children":[
-				2
-			],
-			"name":"Object_2"
-		},
-		{
-			"children":[
-				3
-			],
-			"name":"3a2aaa22fb3d4b329318a980ad1bf6d1.fbx",
-			"rotation":[
-				0.70710688829422,
-				0,
-				0,
-				0.7071066498756409
-			]
-		},
-		{
-			"children":[
-				4
-			],
-			"name":"Sketchfab_model",
-			"rotation":[
-				-0.70710688829422,
-				0,
-				0,
-				0.7071066498756409
-			]
+			"name":"Sphere"
 		}
 	],
 	"materials":[
 		{
-			"name":"material",
+			"doubleSided":true,
+			"name":"Material.001",
 			"pbrMetallicRoughness":{
 				"baseColorTexture":{
 					"index":0
@@ -79,7 +32,7 @@
 	],
 	"meshes":[
 		{
-			"name":"UnstableStarCore_1_0",
+			"name":"Sphere",
 			"primitives":[
 				{
 					"attributes":{
@@ -101,70 +54,70 @@
 	],
 	"images":[
 		{
-			"mimeType":"image/jpeg",
-			"name":"material_baseColor",
-			"uri":"material_baseColor.jpg"
+			"mimeType":"image/png",
+			"name":"material_1_baseColor",
+			"uri":"material_1_baseColor.png"
 		}
 	],
 	"accessors":[
 		{
 			"bufferView":0,
 			"componentType":5126,
-			"count":543,
+			"count":1984,
 			"max":[
-				9.995849609375,
-				10.02656078338623,
-				10.055370330810547
+				0.9999997019767761,
+				1,
+				0.9999993443489075
 			],
 			"min":[
-				-10.007933616638184,
-				-9.999884605407715,
-				-10.05536937713623
+				-0.9999990463256836,
+				-1,
+				-1
 			],
 			"type":"VEC3"
 		},
 		{
 			"bufferView":1,
 			"componentType":5126,
-			"count":543,
+			"count":1984,
 			"type":"VEC3"
 		},
 		{
 			"bufferView":2,
 			"componentType":5126,
-			"count":543,
+			"count":1984,
 			"type":"VEC2"
 		},
 		{
 			"bufferView":3,
 			"componentType":5123,
-			"count":2910,
+			"count":2880,
 			"type":"SCALAR"
 		}
 	],
 	"bufferViews":[
 		{
 			"buffer":0,
-			"byteLength":6516,
+			"byteLength":23808,
 			"byteOffset":0,
 			"target":34962
 		},
 		{
 			"buffer":0,
-			"byteLength":6516,
-			"byteOffset":6516,
+			"byteLength":23808,
+			"byteOffset":23808,
 			"target":34962
 		},
 		{
 			"buffer":0,
-			"byteLength":4344,
-			"byteOffset":13032,
+			"byteLength":15872,
+			"byteOffset":47616,
 			"target":34962
 		},
 		{
 			"buffer":0,
-			"byteLength":5820,
-			"byteOffset":17376,
+			"byteLength":5760,
+			"byteOffset":63488,
 			"target":34963
 		}
 	],
@@ -176,7 +129,7 @@
 	],
 	"buffers":[
 		{
-			"byteLength":23196,
+			"byteLength":69248,
 			"uri":"Sun.bin"
 		}
 	]

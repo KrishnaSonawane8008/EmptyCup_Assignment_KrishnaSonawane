@@ -1,9 +1,14 @@
 import * as THREE from "three";
 import {DrawOrbitLines, CreatePlanetOrb} from './PlanetHelpers.js'
+import {GLTFLoader} from 'jsm/loaders/GLTFLoader.js'
 
 
+const gltfLoader=new GLTFLoader();
 
 function CreateSun(size){
+    const Sun=new THREE.Group();
+    Sun.name="Sun"
+
     const mesh=new THREE.Mesh(
         new THREE.IcosahedronGeometry(1.0, 4), 
         new THREE.MeshBasicMaterial({
@@ -11,7 +16,15 @@ function CreateSun(size){
         })
     );
     mesh.scale.set(size,size,size);
-    return {mesh}
+
+    gltfLoader.load('./SunAssets/Sun.gltf', (gltfScene)=>{
+        console.log(gltfScene)
+        gltfScene.scene.scale.set(size,size,size)
+        Sun.add(gltfScene.scene)
+    })
+
+    //Sun.add(mesh)
+    return Sun
 }
 
 

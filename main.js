@@ -43,7 +43,7 @@ renderer.toneMapping=THREE.LinearToneMapping;
 renderer.toneMappingExposure=3;
 renderer.outputColorSpace = THREE.SRGBColorSpace;
 //=========================Planets===================================
-const SunMesh=CreateSun(4).mesh;
+const SunMesh=CreateSun(4);
 scene.add(SunMesh);
 
 
@@ -70,9 +70,11 @@ const Neptune_Orbit=CreateNeptune(40)
 scene.add(Neptune_Orbit)
 //=========================Planets===================================
 
+// const ambientlight=new THREE.AmbientLight(0xffffff, 1)
+// scene.add(ambientlight)
 
-const pointlight=new THREE.PointLight(0xffffff, 100.0);
-scene.add(pointlight)
+// const pointlight=new THREE.PointLight(0xffffff, 100.0);
+// scene.add(pointlight)
 
 function animate(){
 //==================================================================================
