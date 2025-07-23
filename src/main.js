@@ -1,9 +1,10 @@
 import * as THREE from "three";
 import {OrbitControls} from 'jsm/controls/OrbitControls.js';
-import {CreateSun, CreateEarthandMoon, CreateMercury, CreateVenus, CreateMars, CreateJupiter} from './PlanetCluster.js'
+import {CreateSun, CreateEarthandMoon, CreateMercury, CreateVenus, CreateMars, CreateJupiter, CreateSaturn, CreateNeptune} from './PlanetCluster.js'
 import {RenderPass} from 'jsm/postprocessing/RenderPass.js';
 import {EffectComposer} from 'jsm/postprocessing/EffectComposer.js';
 import {UnrealBloomPass} from 'jsm/postprocessing/UnrealBloomPass.js';
+import {OutputPass} from 'jsm/postprocessing/OutputPass.js';
 // import {GUI} from ''
 
 const w=window.innerWidth;
@@ -17,7 +18,7 @@ document.body.appendChild(renderer.domElement);
 const fov=75;
 const aspect=w/h;
 const near=0.1;
-const far=100;
+const far=500;
 const camera=new THREE.PerspectiveCamera(fov, aspect, near, far);
 camera.position.z=1;
 camera.position.y=50;
@@ -28,16 +29,19 @@ const renderScene= new RenderPass(scene, camera);
 const composer=new EffectComposer(renderer);
 composer.addPass(renderScene);
 const bloomPass=new UnrealBloomPass(
-    new THREE.Vector2(w,h),
-    1.6,
+    new THREE.Vector2(window.innerWidth,window.innerHeight),
+    1.0,
     0.1,
     0.5
 );
 composer.addPass(bloomPass)
 
+const outputpass=new OutputPass();
+composer.addPass(outputpass)
+
 renderer.toneMapping=THREE.LinearToneMapping;
 renderer.toneMappingExposure=3;
-
+renderer.outputColorSpace = THREE.SRGBColorSpace;
 //=========================Planets===================================
 const SunMesh=CreateSun(4).mesh;
 scene.add(SunMesh);
@@ -58,10 +62,13 @@ scene.add(Mars_Orbit)
 
 const Jupiter_Orbit=CreateJupiter(30)
 scene.add(Jupiter_Orbit)
-//=========================Planets===================================
 
-// const light=new THREE.AmbientLight(0xffffff, 0.1);
-// scene.add(light);
+const Saturn_Orbit=CreateSaturn(35)
+scene.add(Saturn_Orbit)
+
+const Neptune_Orbit=CreateNeptune(40)
+scene.add(Neptune_Orbit)
+//=========================Planets===================================
 
 
 const pointlight=new THREE.PointLight(0xffffff, 100.0);
@@ -75,9 +82,9 @@ function animate(){
     Mercury_Orbit.rotateY(-0.025)
     Venus_Orbit.rotateY(-0.02)
     Mars_Orbit.rotateY(-0.005)
-    Jupiter_Orbit.rotateY(-0.01)
-
-
+    Jupiter_Orbit.rotateY(-0.003)
+    Saturn_Orbit.rotateY(-0.013)
+    Neptune_Orbit.rotateY(-0.001)
 
 
 //==================================================================================
@@ -88,3 +95,10 @@ function animate(){
 }
 
 animate();
+
+window.addEventListener("resize", function(){
+    camera.aspect=window.innerWidth/window.innerHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    composer.setSize(window.innerWidth, window.innerHeight);
+});

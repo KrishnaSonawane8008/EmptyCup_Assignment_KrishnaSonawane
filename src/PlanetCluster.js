@@ -25,14 +25,14 @@ function CreateEarthandMoon(EarthOrbitRadius, MoonRadius){
     const EarthMesh=CreatePlanetOrb(1, 4, 0x1498e4, "Earth");
     EarthMesh.position.set(EarthOrbitRadius,0.0,0.0)
     EarthOrbit.add(EarthMesh);
-    EarthOrbit.add(DrawOrbitLines(EarthOrbitRadius, 30))
+    EarthOrbit.add(DrawOrbitLines(EarthOrbitRadius, 30, 1, 50))
 
     EarthOrbit.add(MoonOrbit)
     const MoonMesh=CreatePlanetOrb(0.5, 4, 0x9c9898, "Moon");
     MoonMesh.position.set(MoonRadius,0.0,0.0)
     MoonOrbit.add(MoonMesh)
     MoonOrbit.position.set(EarthOrbitRadius,0.0,0.0)
-    MoonOrbit.add(DrawOrbitLines(MoonRadius, 20))
+    MoonOrbit.add(DrawOrbitLines(MoonRadius, 20, -1, 50))
     
     return EarthOrbit
 }
@@ -46,7 +46,7 @@ function CreateMercury(MercuryOrbitRadius){
     const MercuryMesh=CreatePlanetOrb(0.5, 4, 0x918b8a, "Mercury");
     MercuryMesh.position.set(MercuryOrbitRadius,0.0,0.0)
     MercuryOrbit.add(MercuryMesh);
-    MercuryOrbit.add(DrawOrbitLines(MercuryOrbitRadius, 30))
+    MercuryOrbit.add(DrawOrbitLines(MercuryOrbitRadius, 30, 1, 50))
     
     return MercuryOrbit
 }
@@ -59,7 +59,7 @@ function CreateVenus(VenusOrbitRadius){
     const VenusMesh=CreatePlanetOrb(1, 4, 0xf24f0a, "Venus");
     VenusMesh.position.set(VenusOrbitRadius,0.0,0.0)
     VenusOrbit.add(VenusMesh);
-    VenusOrbit.add(DrawOrbitLines(VenusOrbitRadius, 30))
+    VenusOrbit.add(DrawOrbitLines(VenusOrbitRadius, 30, 1, 50))
     
     return VenusOrbit
 }
@@ -72,7 +72,7 @@ function CreateMars(MarsOrbitRadius){
     const MarsMesh=CreatePlanetOrb(0.75, 4, 0xe32809, "Mars");
     MarsMesh.position.set(MarsOrbitRadius,0.0,0.0)
     MarsOrbit.add(MarsMesh);
-    MarsOrbit.add(DrawOrbitLines(MarsOrbitRadius, 30))
+    MarsOrbit.add(DrawOrbitLines(MarsOrbitRadius, 30, 1, 50))
     
     return MarsOrbit
 }
@@ -85,13 +85,36 @@ function CreateJupiter(JupiterOrbitRadius){
     const JupiterMesh=CreatePlanetOrb(2, 4, 0xe32809, "Jupiter");
     JupiterMesh.position.set(JupiterOrbitRadius,0.0,0.0)
     JupiterOrbit.add(JupiterMesh);
-    JupiterOrbit.add(DrawOrbitLines(JupiterOrbitRadius, 30))
+    JupiterOrbit.add(DrawOrbitLines(JupiterOrbitRadius, 30, 1, 50))
     
     return JupiterOrbit
 }
 
+function CreateSaturn(SaturnOrbitRadius){
+    const SaturnOrbit=new THREE.Group();
+    SaturnOrbit.name="SaturnOrbit"
 
+    //const earthtexture=new THREE.TextureLoader().load('./Textures/earthmap1k.jpg')
+    const SaturnMesh=CreatePlanetOrb(1.3, 4, 0x948b73, "Saturn");
+    SaturnMesh.position.set(SaturnOrbitRadius,0.0,0.0)
+    SaturnOrbit.add(SaturnMesh);
+    SaturnOrbit.add(DrawOrbitLines(SaturnOrbitRadius, 30, 1, 50))
+    
+    return SaturnOrbit
+}
 
+function CreateNeptune(NeptuneOrbitRadius){
+    const NeptuneOrbit=new THREE.Group();
+    NeptuneOrbit.name="NeptuneOrbit"
+
+    //const earthtexture=new THREE.TextureLoader().load('./Textures/earthmap1k.jpg')
+    const NeptuneMesh=CreatePlanetOrb(1, 4, 0x1d07eb, "Neptune");
+    NeptuneMesh.position.set(NeptuneOrbitRadius,0.0,0.0)
+    NeptuneOrbit.add(NeptuneMesh);
+    NeptuneOrbit.add(DrawOrbitLines(NeptuneOrbitRadius, 30, 1, 50))
+    
+    return NeptuneOrbit
+}
 
 
 
@@ -100,4 +123,6 @@ export { CreateSun,
         CreateMercury, 
         CreateVenus, 
         CreateMars,
-        CreateJupiter }
+        CreateJupiter,
+        CreateSaturn,
+        CreateNeptune }

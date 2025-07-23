@@ -1,17 +1,17 @@
 import * as THREE from "three";
-import { MeshLine, MeshLineMaterial, MeshLineRaycast } from './node_modules/three.meshline/src/THREE.MeshLine.js';
+import { MeshLine, MeshLineMaterial, MeshLineRaycast } from '../node_modules/three.meshline/src/THREE.MeshLine.js';
 
 
 function deg_to_rad(angle_in_degrees){
     return angle_in_degrees * (Math.PI/180);
 }
 
-function DrawOrbitLines(radius, segments){
+function DrawOrbitLines(radius, segments, rot_dir, orbit_percent){
     const points = [];
     
     points.push(new THREE.Vector3(0,0,0).add(new THREE.Vector3(1,0,0).multiplyScalar(radius)))
     for(let i=0; i<=segments; i++){
-        const rot_norm=new THREE.Vector3(1,0,0).applyAxisAngle(new THREE.Vector3(0,1,0), deg_to_rad(i*(360/segments)))
+        const rot_norm=new THREE.Vector3(1,0,0).applyAxisAngle(new THREE.Vector3(0,1,0), rot_dir*deg_to_rad(i*((360*(orbit_percent/100))/segments)))
         points.push( new THREE.Vector3(0,0,0).add(rot_norm.multiplyScalar(radius)) )
     }
     const OrbitGeometry=new THREE.BufferGeometry().setFromPoints(points);
