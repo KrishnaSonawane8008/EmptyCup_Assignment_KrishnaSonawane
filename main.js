@@ -10,7 +10,7 @@ import {OutputPass} from 'jsm/postprocessing/OutputPass.js';
 const w=window.innerWidth;
 const h=window.innerHeight;
 const renderer=new THREE.WebGLRenderer({antialias: true});
-renderer.shadowMap.enabled=true;
+// renderer.shadowMap.enabled=true;
 renderer.setSize(w,h);
 document.body.appendChild(renderer.domElement);
 
@@ -25,23 +25,32 @@ camera.position.y=50;
 const controls=new OrbitControls(camera, renderer.domElement);
 const scene=new THREE.Scene();
 
+const ambientlight=new THREE.AmbientLight(0xffffff, 1)
+scene.add(ambientlight)
+
 const renderScene= new RenderPass(scene, camera);
 const composer=new EffectComposer(renderer);
-composer.addPass(renderScene);
+
 const bloomPass=new UnrealBloomPass(
     new THREE.Vector2(window.innerWidth,window.innerHeight),
-    1.0,
+    1.6,
     0.1,
-    0.5
+    0.1
 );
-composer.addPass(bloomPass)
-
-const outputpass=new OutputPass();
-composer.addPass(outputpass)
 
 renderer.toneMapping=THREE.LinearToneMapping;
 renderer.toneMappingExposure=3;
 renderer.outputColorSpace = THREE.SRGBColorSpace;
+
+const outputpass=new OutputPass();
+
+composer.addPass(renderScene);
+composer.addPass(bloomPass)
+bloomPass.strength = 1.5;
+bloomPass.radius = 0.7;
+bloomPass.threshold = 0.1;
+
+composer.addPass(outputpass)
 //=========================Planets===================================
 const SunMesh=CreateSun(4);
 scene.add(SunMesh);
@@ -70,13 +79,17 @@ const Neptune_Orbit=CreateNeptune(40)
 scene.add(Neptune_Orbit)
 //=========================Planets===================================
 
-// const ambientlight=new THREE.AmbientLight(0xffffff, 1)
-// scene.add(ambientlight)
+
 
 // const pointlight=new THREE.PointLight(0xffffff, 100.0);
 // scene.add(pointlight)
 
+// const pointlight2=new THREE.PointLight(0xffffff, 1.0);
+// pointlight2.position.set(0,10,0)
+// scene.add(pointlight2)
+
 function animate(){
+    
 //==================================================================================
     SunMesh.rotateY(-0.01);
     Earth_Moon_Orbit.rotateY(-0.01)
@@ -93,6 +106,7 @@ function animate(){
     //renderer.render(scene, camera);
     composer.render();
     requestAnimationFrame(animate);
+    
 
 }
 

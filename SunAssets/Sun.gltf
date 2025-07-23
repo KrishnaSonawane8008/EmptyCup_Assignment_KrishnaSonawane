@@ -54,9 +54,9 @@
 	],
 	"images":[
 		{
-			"mimeType":"image/png",
-			"name":"material_1_baseColor",
-			"uri":"material_1_baseColor.png"
+			"mimeType":"image/jpeg",
+			"name":"material_baseColor",
+			"uri":"material_baseColor.jpg"
 		}
 	],
 	"accessors":[
