@@ -18,7 +18,6 @@ function CreateSun(size){
     mesh.scale.set(size,size,size);
 
     gltfLoader.load('./SunAssets/Sun.gltf', (gltfScene)=>{
-        console.log(gltfScene)
         gltfScene.scene.scale.set(size,size,size)
         Sun.add(gltfScene.scene)
     })
@@ -55,10 +54,11 @@ function CreateMercury(MercuryOrbitRadius){
     const MercuryOrbit=new THREE.Group();
     MercuryOrbit.name="MercuryOrbit"
 
-    //const earthtexture=new THREE.TextureLoader().load('./Textures/earthmap1k.jpg')
-    const MercuryMesh=CreatePlanetOrb(0.5, 4, 0x918b8a, "Mercury");
-    MercuryMesh.position.set(MercuryOrbitRadius,0.0,0.0)
-    MercuryOrbit.add(MercuryMesh);
+    gltfLoader.load('./MercuryAssets/Mercury.gltf', (gltfScene)=>{
+        gltfScene.scene.scale.set(0.5,0.5,0.5)
+        gltfScene.scene.position.set(MercuryOrbitRadius,0.0,0.0)
+        MercuryOrbit.add(gltfScene.scene)
+    })
     MercuryOrbit.add(DrawOrbitLines(MercuryOrbitRadius, 30, 1, 50))
     
     return MercuryOrbit
@@ -68,7 +68,6 @@ function CreateVenus(VenusOrbitRadius){
     const VenusOrbit=new THREE.Group();
     VenusOrbit.name="VenusOrbit"
 
-    //const earthtexture=new THREE.TextureLoader().load('./Textures/earthmap1k.jpg')
     const VenusMesh=CreatePlanetOrb(1, 4, 0xf24f0a, "Venus");
     VenusMesh.position.set(VenusOrbitRadius,0.0,0.0)
     VenusOrbit.add(VenusMesh);
@@ -81,7 +80,6 @@ function CreateMars(MarsOrbitRadius){
     const MarsOrbit=new THREE.Group();
     MarsOrbit.name="MarsOrbit"
 
-    //const earthtexture=new THREE.TextureLoader().load('./Textures/earthmap1k.jpg')
     const MarsMesh=CreatePlanetOrb(0.75, 4, 0xe32809, "Mars");
     MarsMesh.position.set(MarsOrbitRadius,0.0,0.0)
     MarsOrbit.add(MarsMesh);
@@ -94,7 +92,6 @@ function CreateJupiter(JupiterOrbitRadius){
     const JupiterOrbit=new THREE.Group();
     JupiterOrbit.name="JupiterOrbit"
 
-    //const earthtexture=new THREE.TextureLoader().load('./Textures/earthmap1k.jpg')
     const JupiterMesh=CreatePlanetOrb(2, 4, 0xe32809, "Jupiter");
     JupiterMesh.position.set(JupiterOrbitRadius,0.0,0.0)
     JupiterOrbit.add(JupiterMesh);
@@ -107,7 +104,6 @@ function CreateSaturn(SaturnOrbitRadius){
     const SaturnOrbit=new THREE.Group();
     SaturnOrbit.name="SaturnOrbit"
 
-    //const earthtexture=new THREE.TextureLoader().load('./Textures/earthmap1k.jpg')
     const SaturnMesh=CreatePlanetOrb(1.3, 4, 0x948b73, "Saturn");
     SaturnMesh.position.set(SaturnOrbitRadius,0.0,0.0)
     SaturnOrbit.add(SaturnMesh);
@@ -120,7 +116,6 @@ function CreateNeptune(NeptuneOrbitRadius){
     const NeptuneOrbit=new THREE.Group();
     NeptuneOrbit.name="NeptuneOrbit"
 
-    //const earthtexture=new THREE.TextureLoader().load('./Textures/earthmap1k.jpg')
     const NeptuneMesh=CreatePlanetOrb(1, 4, 0x1d07eb, "Neptune");
     NeptuneMesh.position.set(NeptuneOrbitRadius,0.0,0.0)
     NeptuneOrbit.add(NeptuneMesh);

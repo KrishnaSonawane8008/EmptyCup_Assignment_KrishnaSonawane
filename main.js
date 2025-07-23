@@ -26,9 +26,6 @@ const scene=new THREE.Scene();
 const Bloom_Effect=Bloom(scene, camera, renderer);
 
 
-const gui= new datGui.GUI();
-
-
 
 //=========================Planets===================================
 const SunMesh=CreateSun(4);
@@ -69,19 +66,27 @@ scene.add(ambientlight)
 // scene.add(pointlight2)
 //=========================Lights====================================
 
+//=========================GUI======================================
+const gui= new datGui.GUI();
+const Paly={value:true}
+gui.add(Paly, "value").name("Play");
+//=========================GUI======================================
+
 camera.layers.enableAll()
 function animate(){
     
 //==================================================================================
-    SunMesh.rotateY(-0.01);
-    Earth_Moon_Orbit.rotateY(-0.01)
-    moon_orbit.rotateY(0.04)
-    Mercury_Orbit.rotateY(-0.025)
-    Venus_Orbit.rotateY(-0.02)
-    Mars_Orbit.rotateY(-0.005)
-    Jupiter_Orbit.rotateY(-0.003)
-    Saturn_Orbit.rotateY(-0.013)
-    Neptune_Orbit.rotateY(-0.001)
+    if(Paly.value){
+        SunMesh.rotateY(-0.01);
+        Earth_Moon_Orbit.rotateY(-0.01)
+        moon_orbit.rotateY(0.04)
+        Mercury_Orbit.rotateY(-0.025)
+        Venus_Orbit.rotateY(-0.02)
+        Mars_Orbit.rotateY(-0.005)
+        Jupiter_Orbit.rotateY(-0.003)
+        Saturn_Orbit.rotateY(-0.013)
+        Neptune_Orbit.rotateY(-0.001)
+    }
 
 //==================================================================================
     scene.traverse(nonBloomed);
