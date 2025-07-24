@@ -3,7 +3,7 @@ import {OrbitControls} from 'jsm/controls/OrbitControls.js';
 import {CreateSun, CreateEarthandMoon, CreateMercury, CreateVenus, CreateMars, CreateJupiter, CreateSaturn, CreateUranus,CreateNeptune} from './PlanetCluster.js'
 import datGui from 'https://cdn.jsdelivr.net/npm/dat.gui@0.7.9/+esm'
 import { Bloom, nonBloomed, restoreMaterial } from "./BloomEffect.js";
-import {RotateBasePlanet, RotateAllBasePlanets} from './PlanetHelpers.js'
+import {RotateBasePlanet, RotateAllBasePlanets, Rectlight} from './PlanetHelpers.js'
 
 const w=window.innerWidth;
 const h=window.innerHeight;
@@ -64,15 +64,11 @@ const PlanetContainer={"Sun": SunMesh, "Mercury": Mercury_Orbit, "Venus": Venus_
 //=========================Planets===================================
 
 //=========================Lights====================================
-const ambientlight=new THREE.AmbientLight(0xffffff, 0.5)
+const ambientlight=new THREE.AmbientLight(0xffffff, 0)
 scene.add(ambientlight)
 
-// const pointlight=new THREE.PointLight(0xffffff, 100.0);
-// scene.add(pointlight)
+Rectlight(scene)
 
-// const pointlight2=new THREE.PointLight(0xffffff, 1.0);
-// pointlight2.position.set(0,10,0)
-// scene.add(pointlight2)
 //=========================Lights====================================
 
 //=========================GUI======================================

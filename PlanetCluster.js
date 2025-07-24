@@ -20,6 +20,7 @@ function CreateSun(size){
     gltfLoader.load('./SunAssets/Sun.gltf', (gltfScene)=>{
         gltfScene.scene.scale.set(size,size,size)
         gltfScene.scene.name="SunMesh"
+        console.log(gltfScene.scene)
         Sun.add(gltfScene.scene)
     })
 

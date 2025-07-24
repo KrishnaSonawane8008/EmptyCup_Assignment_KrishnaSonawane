@@ -1,5 +1,6 @@
 import * as THREE from "three";
 import { MeshLine, MeshLineMaterial, MeshLineRaycast } from './THREE.MeshLine.js';
+import { RectAreaLightHelper } from 'jsm/helpers/RectAreaLightHelper.js';
 
 
 function deg_to_rad(angle_in_degrees){
@@ -60,5 +61,31 @@ function RotateAllBasePlanets(PlanetContainerObj, rotval){
 // function RotateCustom(PlanetContainerObj){
 //     RotateBasePlanet(PlanetContainerObj.Sun, -0.01);
 // }
+function putRectLight(pos, scene, rectlightdir, lighrIntensity){
+    const rectLight = new THREE.RectAreaLight( 0xffffff, lighrIntensity,  10, 10 );
+    rectLight.position.set( pos.x, pos.y, pos.z );
 
-export {DrawOrbitLines, CreatePlanetOrb, RotateBasePlanet, RotateAllBasePlanets}
+    const lookdir= new THREE.Vector3(pos.x, pos.y, pos.z).normalize().multiplyScalar( rectlightdir*(new THREE.Vector3(0,0,0).distanceTo(pos) + 1.0 ))
+    rectLight.lookAt( lookdir.x, lookdir.y, lookdir.z);
+    // rectLight.lookAt( 0, 0, 0);
+    scene.add( rectLight )
+
+    // const rectLightHelper = new RectAreaLightHelper( rectLight );
+    // scene.add( rectLightHelper );
+}
+function Rectlight(scene){
+    putRectLight(new THREE.Vector3(5,0,0), scene,  -1,  0.5)
+    putRectLight(new THREE.Vector3(-5,0,0), scene, -1,  0.5)
+    putRectLight(new THREE.Vector3(0,0,5), scene,  -1,  0.5)
+    putRectLight(new THREE.Vector3(0,0,-5), scene, -1,  0.5)
+    putRectLight(new THREE.Vector3(0,5,0), scene,  -1,  0.5)
+    putRectLight(new THREE.Vector3(0,-5,0), scene, -1,  0.5)
+
+    putRectLight(new THREE.Vector3(5,0,0), scene,  1,  4)
+    putRectLight(new THREE.Vector3(-5,0,0), scene, 1,  4)
+    putRectLight(new THREE.Vector3(0,0,5), scene,  1,  4)
+    putRectLight(new THREE.Vector3(0,0,-5), scene, 1,  4)
+    
+}
+
+export {DrawOrbitLines, CreatePlanetOrb, RotateBasePlanet, RotateAllBasePlanets,Rectlight}

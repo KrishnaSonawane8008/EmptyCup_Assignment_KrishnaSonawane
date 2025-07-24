@@ -25,9 +25,9 @@ function Bloom(scene, camera, renderer){
 
     BloomComposer.addPass(renderScene);
     BloomComposer.addPass(bloomPass)
-    bloomPass.strength = 1.5;
-    bloomPass.radius = 0.7;
-    bloomPass.threshold = 0.003;
+    bloomPass.strength = 0.5;
+    bloomPass.radius = 0.75;
+    bloomPass.threshold = 0.01;
 
     BloomComposer.renderToScreen=false;
 
