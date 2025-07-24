@@ -114,7 +114,7 @@ window.addEventListener("resize", function(){
     camera.aspect=window.innerWidth/window.innerHeight;
     camera.updateProjectionMatrix();
     renderer.setSize(window.innerWidth, window.innerHeight);
-    BloomComposer.setSize(window.innerWidth, window.innerHeight);
-    finalComposer.setSize(window.innerWidth, window.innerHeight);
+    Bloom_Effect.BloomComposer.setSize(window.innerWidth, window.innerHeight);
+    Bloom_Effect.finalComposer.setSize(window.innerWidth, window.innerHeight);
 
 });

@@ -15,25 +15,24 @@
 	"nodes":[
 		{
 			"mesh":0,
-			"name":"Moon"
+			"name":"Venus"
 		}
 	],
 	"materials":[
 		{
 			"doubleSided":true,
-			"name":"Material.005",
+			"name":"Material",
 			"pbrMetallicRoughness":{
 				"baseColorTexture":{
 					"index":0
 				},
-				"metallicFactor":0,
-				"roughnessFactor":0.5
+				"metallicFactor":0
 			}
 		}
 	],
 	"meshes":[
 		{
-			"name":"Sphere.003",
+			"name":"Sphere.004",
 			"primitives":[
 				{
 					"attributes":{
@@ -56,8 +55,8 @@
 	"images":[
 		{
 			"mimeType":"image/jpeg",
-			"name":"Material.001_baseColor",
-			"uri":"Material_001_baseColor.jpg"
+			"name":"venusmap",
+			"uri":"venusmap.jpg"
 		}
 	],
 	"accessors":[
@@ -124,14 +123,14 @@
 	],
 	"samplers":[
 		{
-			"magFilter":9729,
-			"minFilter":9987
+			"magFilter":9728,
+			"minFilter":9984
 		}
 	],
 	"buffers":[
 		{
 			"byteLength":69248,
-			"uri":"Moon.bin"
+			"uri":"Venus.bin"
 		}
 	]
 }

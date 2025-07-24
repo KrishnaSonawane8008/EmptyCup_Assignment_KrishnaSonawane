@@ -33,11 +33,6 @@ function CreateEarthandMoon(EarthOrbitRadius, MoonRadius){
     const MoonOrbit=new THREE.Group();
     MoonOrbit.name="MoonOrbit"
 
-    //const earthtexture=new THREE.TextureLoader().load('./Textures/earthmap1k.jpg')
-    // const EarthMesh=CreatePlanetOrb(1, 4, 0x1498e4, "Earth");
-    // EarthMesh.position.set(EarthOrbitRadius,0.0,0.0)
-    // EarthOrbit.add(EarthMesh);
-
     gltfLoader.load('./EarthAssets/Earth.gltf', (gltfScene)=>{
         gltfScene.scene.scale.set(1,1,1)
         gltfScene.scene.position.set(EarthOrbitRadius,0.0,0.0)
@@ -52,9 +47,7 @@ function CreateEarthandMoon(EarthOrbitRadius, MoonRadius){
         gltfScene.scene.position.set(MoonRadius,0.0,0.0)
         MoonOrbit.add(gltfScene.scene)
     })
-    // const MoonMesh=CreatePlanetOrb(0.5, 4, 0x9c9898, "Moon");
-    // MoonMesh.position.set(MoonRadius,0.0,0.0)
-    // MoonOrbit.add(MoonMesh)
+
 
     MoonOrbit.position.set(EarthOrbitRadius,0.0,0.0)
     MoonOrbit.add(DrawOrbitLines(MoonRadius, 20, -1, 50))
@@ -81,9 +74,12 @@ function CreateVenus(VenusOrbitRadius){
     const VenusOrbit=new THREE.Group();
     VenusOrbit.name="VenusOrbit"
 
-    const VenusMesh=CreatePlanetOrb(1, 4, 0xf24f0a, "Venus");
-    VenusMesh.position.set(VenusOrbitRadius,0.0,0.0)
-    VenusOrbit.add(VenusMesh);
+    gltfLoader.load('./VenusAssets/Venus.gltf', (gltfScene)=>{
+        gltfScene.scene.scale.set(1,1,1)
+        gltfScene.scene.position.set(VenusOrbitRadius,0.0,0.0)
+        VenusOrbit.add(gltfScene.scene)
+    })
+
     VenusOrbit.add(DrawOrbitLines(VenusOrbitRadius, 30, 1, 50))
     
     return VenusOrbit
