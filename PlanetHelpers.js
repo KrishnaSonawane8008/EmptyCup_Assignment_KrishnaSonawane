@@ -20,7 +20,7 @@ function DrawOrbitLines(radius, segments, rot_dir, orbit_percent){
 
     const OrbitLineMat = new MeshLineMaterial({
         color: new THREE.Color().setHex(0xffffff),
-        lineWidth : 0.2
+        lineWidth : 0.1
     });
     const OrbitLineMesh = new THREE.Mesh(line, OrbitLineMat);
     return OrbitLineMesh
