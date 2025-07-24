@@ -19,6 +19,7 @@ function CreateSun(size){
 
     gltfLoader.load('./SunAssets/Sun.gltf', (gltfScene)=>{
         gltfScene.scene.scale.set(size,size,size)
+        gltfScene.scene.name="SunMesh"
         Sun.add(gltfScene.scene)
     })
 
@@ -36,6 +37,7 @@ function CreateEarthandMoon(EarthOrbitRadius, MoonRadius){
     gltfLoader.load('./EarthAssets/Earth.gltf', (gltfScene)=>{
         gltfScene.scene.scale.set(1,1,1)
         gltfScene.scene.position.set(EarthOrbitRadius,0.0,0.0)
+         gltfScene.scene.name="EarthMesh"
         EarthOrbit.add(gltfScene.scene)
     })
     EarthOrbit.add(DrawOrbitLines(EarthOrbitRadius, 30, 1, 50))
@@ -45,6 +47,7 @@ function CreateEarthandMoon(EarthOrbitRadius, MoonRadius){
     gltfLoader.load('./MoonAssets/Moon.gltf', (gltfScene)=>{
         gltfScene.scene.scale.set(0.5,0.5,0.5)
         gltfScene.scene.position.set(MoonRadius,0.0,0.0)
+         gltfScene.scene.name="MoonMesh"
         MoonOrbit.add(gltfScene.scene)
     })
 
@@ -63,6 +66,7 @@ function CreateMercury(MercuryOrbitRadius){
     gltfLoader.load('./MercuryAssets/Mercury.gltf', (gltfScene)=>{
         gltfScene.scene.scale.set(0.5,0.5,0.5)
         gltfScene.scene.position.set(MercuryOrbitRadius,0.0,0.0)
+         gltfScene.scene.name="MercuryMesh"
         MercuryOrbit.add(gltfScene.scene)
     })
     MercuryOrbit.add(DrawOrbitLines(MercuryOrbitRadius, 30, 1, 50))
@@ -77,6 +81,7 @@ function CreateVenus(VenusOrbitRadius){
     gltfLoader.load('./VenusAssets/Venus.gltf', (gltfScene)=>{
         gltfScene.scene.scale.set(1,1,1)
         gltfScene.scene.position.set(VenusOrbitRadius,0.0,0.0)
+         gltfScene.scene.name="VenusMesh"
         VenusOrbit.add(gltfScene.scene)
     })
 
@@ -92,6 +97,7 @@ function CreateMars(MarsOrbitRadius){
     gltfLoader.load('./MarsAssets/Mars.gltf', (gltfScene)=>{
         gltfScene.scene.scale.set(0.75,0.75,0.75)
         gltfScene.scene.position.set(MarsOrbitRadius,0.0,0.0)
+        gltfScene.scene.name="MarsMesh"
         MarsOrbit.add(gltfScene.scene)
     })
 
@@ -107,6 +113,7 @@ function CreateJupiter(JupiterOrbitRadius){
     gltfLoader.load('./JupiterAssets/Jupiter.gltf', (gltfScene)=>{
         gltfScene.scene.scale.set(2,2,2)
         gltfScene.scene.position.set(JupiterOrbitRadius,0.0,0.0)
+        gltfScene.scene.name="JupiterMesh"
         JupiterOrbit.add(gltfScene.scene)
     })
 
@@ -122,6 +129,7 @@ function CreateSaturn(SaturnOrbitRadius){
     gltfLoader.load('./SaturnAssets/Saturn.gltf', (gltfScene)=>{
         gltfScene.scene.scale.set(1.3,1.3,1.3)
         gltfScene.scene.position.set(SaturnOrbitRadius,0.0,0.0)
+        gltfScene.scene.name="SaturnMesh"
         SaturnOrbit.add(gltfScene.scene)
     })
     SaturnOrbit.add(DrawOrbitLines(SaturnOrbitRadius, 30, 1, 50))
@@ -136,6 +144,7 @@ function CreateUranus(UranusOrbitRadius){
     gltfLoader.load('./UranusAssets/Uranus.gltf', (gltfScene)=>{
         gltfScene.scene.scale.set(1,1,1)
         gltfScene.scene.position.set(UranusOrbitRadius,0.0,0.0)
+        gltfScene.scene.name="UranusMesh"
         UranusOrbit.add(gltfScene.scene)
     })
     UranusOrbit.add(DrawOrbitLines(UranusOrbitRadius, 30, 1, 50))
@@ -151,6 +160,7 @@ function CreateNeptune(NeptuneOrbitRadius){
     gltfLoader.load('./NeptuneAssets/Neptune.gltf', (gltfScene)=>{
         gltfScene.scene.scale.set(1,1,1)
         gltfScene.scene.position.set(NeptuneOrbitRadius,0.0,0.0)
+        gltfScene.scene.name="NeptuneMesh"
         NeptuneOrbit.add(gltfScene.scene)
     })
     NeptuneOrbit.add(DrawOrbitLines(NeptuneOrbitRadius, 30, 1, 50))

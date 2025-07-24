@@ -3,6 +3,7 @@ import {OrbitControls} from 'jsm/controls/OrbitControls.js';
 import {CreateSun, CreateEarthandMoon, CreateMercury, CreateVenus, CreateMars, CreateJupiter, CreateSaturn, CreateUranus,CreateNeptune} from './PlanetCluster.js'
 import datGui from 'https://cdn.jsdelivr.net/npm/dat.gui@0.7.9/+esm'
 import { Bloom, nonBloomed, restoreMaterial } from "./BloomEffect.js";
+import {RotateBasePlanet, RotateAllBasePlanets} from './PlanetHelpers.js'
 
 const w=window.innerWidth;
 const h=window.innerHeight;
@@ -55,6 +56,11 @@ scene.add(Uranus_Orbit)
 
 const Neptune_Orbit=CreateNeptune(45)
 scene.add(Neptune_Orbit)
+
+const PlanetContainer={"Sun": SunMesh, "Mercury": Mercury_Orbit, "Venus": Venus_Orbit,
+                        "Earth":Earth_Moon_Orbit, "Moon":Earth_Moon_Orbit.getObjectByName("MoonOrbit"), "Mars":Mars_Orbit, "Jupiter":Jupiter_Orbit,
+                        "Saturn":Saturn_Orbit, "Uranus":Uranus_Orbit, "Neptune":Neptune_Orbit
+                      }
 //=========================Planets===================================
 
 //=========================Lights====================================
@@ -79,6 +85,8 @@ camera.layers.enableAll()
 function animate(){
     
 //==================================================================================
+    // RotateBasePlanet(Saturn_Orbit.getObjectByName("SaturnMesh"), 0.01)
+    RotateAllBasePlanets(PlanetContainer, -0.01);
     if(Paly.value){
         SunMesh.rotateY(-0.01);
         Earth_Moon_Orbit.rotateY(-0.01)

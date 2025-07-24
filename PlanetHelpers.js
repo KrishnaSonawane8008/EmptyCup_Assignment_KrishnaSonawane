@@ -45,4 +45,20 @@ function CreatePlanetOrb(size, detail, colour, Plname, PlanetTexture){
     return PlanetMesh
 }
 
-export {DrawOrbitLines, CreatePlanetOrb}
+function RotateBasePlanet(planet, rotation_val){
+    if(planet!=undefined && planet.isObject3D){
+        planet.rotateY(rotation_val)
+    }
+}
+
+function RotateAllBasePlanets(PlanetContainerObj, rotval){
+    for(const prop in PlanetContainerObj){
+        RotateBasePlanet(PlanetContainerObj[prop].getObjectByName(prop.concat("Mesh")), rotval)
+    }
+}
+
+// function RotateCustom(PlanetContainerObj){
+//     RotateBasePlanet(PlanetContainerObj.Sun, -0.01);
+// }
+
+export {DrawOrbitLines, CreatePlanetOrb, RotateBasePlanet, RotateAllBasePlanets}
