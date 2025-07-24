@@ -75,6 +75,37 @@ Rectlight(scene)
 const gui= new datGui.GUI();
 const Paly={value:true}
 gui.add(Paly, "value").name("Play");
+
+const SunSpeed={val:1}
+gui.add(SunSpeed, "val", 0, 10).name("SunSpeed");
+
+const MercurySpeed={val:2.5}
+gui.add(MercurySpeed, "val", 0, 10).name("MercurySpeed");
+
+const VenusSpeed={val:2}
+gui.add(VenusSpeed, "val", 0, 10).name("VenusSpeed");
+
+const EarthSpeed={val:1}
+gui.add(EarthSpeed, "val", 0, 10).name("EarthSpeed");
+
+const MoonSpeed={val:4}
+gui.add(MoonSpeed, "val", 0, 10).name("MoonSpeed");
+
+const MarsSpeed={val:0.5}
+gui.add(MarsSpeed, "val", 0, 10).name("MarsSpeed");
+
+const JupiterSpeed={val:0.3}
+gui.add(JupiterSpeed, "val", 0, 10).name("JupiterSpeed");
+
+const SaturnSpeed={val:1.3}
+gui.add(SaturnSpeed, "val", 0, 10).name("SaturnSpeed");
+
+const UranusSpeed={val:0.5}
+gui.add(UranusSpeed, "val", 0, 10).name("UranusSpeed");
+
+const NeptuneSpeed={val:1}
+gui.add(NeptuneSpeed, "val", 0, 10).name("NeptuneSpeed");
+
 //=========================GUI======================================
 
 camera.layers.enableAll()
@@ -84,16 +115,16 @@ function animate(){
     // RotateBasePlanet(Saturn_Orbit.getObjectByName("SaturnMesh"), 0.01)
     RotateAllBasePlanets(PlanetContainer, -0.01);
     if(Paly.value){
-        SunMesh.rotateY(-0.01);
-        Earth_Moon_Orbit.rotateY(-0.01)
-        moon_orbit.rotateY(0.04)
-        Mercury_Orbit.rotateY(-0.025)
-        Venus_Orbit.rotateY(-0.02)
-        Mars_Orbit.rotateY(-0.005)
-        Jupiter_Orbit.rotateY(-0.003)
-        Saturn_Orbit.rotateY(-0.013)
-        Uranus_Orbit.rotateY(-0.005)
-        Neptune_Orbit.rotateY(-0.001)
+        SunMesh.rotateY(-SunSpeed.val/100);
+        Mercury_Orbit.rotateY(-MercurySpeed.val/100)
+        Venus_Orbit.rotateY(-VenusSpeed.val/100)
+        Earth_Moon_Orbit.rotateY(-EarthSpeed.val/100)
+        moon_orbit.rotateY(MoonSpeed.val/100)
+        Mars_Orbit.rotateY(-MarsSpeed.val/100)
+        Jupiter_Orbit.rotateY(-JupiterSpeed.val/100)
+        Saturn_Orbit.rotateY(-SaturnSpeed.val/100)
+        Uranus_Orbit.rotateY(-UranusSpeed.val/100)
+        Neptune_Orbit.rotateY(-NeptuneSpeed.val/100)
     }
 
 //==================================================================================
