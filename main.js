@@ -1,6 +1,6 @@
 import * as THREE from "three";
 import {OrbitControls} from 'jsm/controls/OrbitControls.js';
-import {CreateSun, CreateEarthandMoon, CreateMercury, CreateVenus, CreateMars, CreateJupiter, CreateSaturn, CreateNeptune} from './PlanetCluster.js'
+import {CreateSun, CreateEarthandMoon, CreateMercury, CreateVenus, CreateMars, CreateJupiter, CreateSaturn, CreateUranus,CreateNeptune} from './PlanetCluster.js'
 import datGui from 'https://cdn.jsdelivr.net/npm/dat.gui@0.7.9/+esm'
 import { Bloom, nonBloomed, restoreMaterial } from "./BloomEffect.js";
 
@@ -50,7 +50,10 @@ scene.add(Jupiter_Orbit)
 const Saturn_Orbit=CreateSaturn(35)
 scene.add(Saturn_Orbit)
 
-const Neptune_Orbit=CreateNeptune(40)
+const Uranus_Orbit=CreateUranus(40)
+scene.add(Uranus_Orbit)
+
+const Neptune_Orbit=CreateNeptune(45)
 scene.add(Neptune_Orbit)
 //=========================Planets===================================
 
@@ -85,6 +88,7 @@ function animate(){
         Mars_Orbit.rotateY(-0.005)
         Jupiter_Orbit.rotateY(-0.003)
         Saturn_Orbit.rotateY(-0.013)
+        Uranus_Orbit.rotateY(-0.005)
         Neptune_Orbit.rotateY(-0.001)
     }
 

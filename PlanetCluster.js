@@ -89,9 +89,12 @@ function CreateMars(MarsOrbitRadius){
     const MarsOrbit=new THREE.Group();
     MarsOrbit.name="MarsOrbit"
 
-    const MarsMesh=CreatePlanetOrb(0.75, 4, 0xe32809, "Mars");
-    MarsMesh.position.set(MarsOrbitRadius,0.0,0.0)
-    MarsOrbit.add(MarsMesh);
+    gltfLoader.load('./MarsAssets/Mars.gltf', (gltfScene)=>{
+        gltfScene.scene.scale.set(0.75,0.75,0.75)
+        gltfScene.scene.position.set(MarsOrbitRadius,0.0,0.0)
+        MarsOrbit.add(gltfScene.scene)
+    })
+
     MarsOrbit.add(DrawOrbitLines(MarsOrbitRadius, 30, 1, 50))
     
     return MarsOrbit
@@ -101,9 +104,12 @@ function CreateJupiter(JupiterOrbitRadius){
     const JupiterOrbit=new THREE.Group();
     JupiterOrbit.name="JupiterOrbit"
 
-    const JupiterMesh=CreatePlanetOrb(2, 4, 0xe32809, "Jupiter");
-    JupiterMesh.position.set(JupiterOrbitRadius,0.0,0.0)
-    JupiterOrbit.add(JupiterMesh);
+    gltfLoader.load('./JupiterAssets/Jupiter.gltf', (gltfScene)=>{
+        gltfScene.scene.scale.set(2,2,2)
+        gltfScene.scene.position.set(JupiterOrbitRadius,0.0,0.0)
+        JupiterOrbit.add(gltfScene.scene)
+    })
+
     JupiterOrbit.add(DrawOrbitLines(JupiterOrbitRadius, 30, 1, 50))
     
     return JupiterOrbit
@@ -113,21 +119,40 @@ function CreateSaturn(SaturnOrbitRadius){
     const SaturnOrbit=new THREE.Group();
     SaturnOrbit.name="SaturnOrbit"
 
-    const SaturnMesh=CreatePlanetOrb(1.3, 4, 0x948b73, "Saturn");
-    SaturnMesh.position.set(SaturnOrbitRadius,0.0,0.0)
-    SaturnOrbit.add(SaturnMesh);
+    gltfLoader.load('./SaturnAssets/Saturn.gltf', (gltfScene)=>{
+        gltfScene.scene.scale.set(1.3,1.3,1.3)
+        gltfScene.scene.position.set(SaturnOrbitRadius,0.0,0.0)
+        SaturnOrbit.add(gltfScene.scene)
+    })
     SaturnOrbit.add(DrawOrbitLines(SaturnOrbitRadius, 30, 1, 50))
     
     return SaturnOrbit
 }
 
+function CreateUranus(UranusOrbitRadius){
+    const UranusOrbit=new THREE.Group();
+    UranusOrbit.name="UranusOrbit"
+
+    gltfLoader.load('./UranusAssets/Uranus.gltf', (gltfScene)=>{
+        gltfScene.scene.scale.set(1,1,1)
+        gltfScene.scene.position.set(UranusOrbitRadius,0.0,0.0)
+        UranusOrbit.add(gltfScene.scene)
+    })
+    UranusOrbit.add(DrawOrbitLines(UranusOrbitRadius, 30, 1, 50))
+    
+    return UranusOrbit
+}
+
+
 function CreateNeptune(NeptuneOrbitRadius){
     const NeptuneOrbit=new THREE.Group();
     NeptuneOrbit.name="NeptuneOrbit"
 
-    const NeptuneMesh=CreatePlanetOrb(1, 4, 0x1d07eb, "Neptune");
-    NeptuneMesh.position.set(NeptuneOrbitRadius,0.0,0.0)
-    NeptuneOrbit.add(NeptuneMesh);
+    gltfLoader.load('./NeptuneAssets/Neptune.gltf', (gltfScene)=>{
+        gltfScene.scene.scale.set(1,1,1)
+        gltfScene.scene.position.set(NeptuneOrbitRadius,0.0,0.0)
+        NeptuneOrbit.add(gltfScene.scene)
+    })
     NeptuneOrbit.add(DrawOrbitLines(NeptuneOrbitRadius, 30, 1, 50))
     
     return NeptuneOrbit
@@ -141,4 +166,5 @@ export { CreateSun,
         CreateMars,
         CreateJupiter,
         CreateSaturn,
+        CreateUranus,
         CreateNeptune }
